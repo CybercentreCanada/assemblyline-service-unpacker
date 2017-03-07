@@ -1,5 +1,4 @@
 import os
-import posixpath
 import subprocess
 
 from collections import namedtuple
@@ -76,7 +75,7 @@ class Unpacker(ServiceBase):
             if 'upx' in name.lower():
                 packedfile = request.download()
                 unpackedfile = packedfile + '.unUPX'
-                displayname = posixpath.basename(request.path) + '.unUPX'
+                displayname = os.path.basename(request.path) + '.unUPX'
                 return self._unpack_upx(packedfile, unpackedfile, displayname)
 
         return UnpackResult(True, None, None, None)
