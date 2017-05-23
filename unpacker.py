@@ -15,11 +15,11 @@ UnpackResult = namedtuple('UnpackResult', ['ok', 'localpath', 'displayname', 'me
 
 class Unpacker(ServiceBase):
     SERVICE_ACCEPTS = 'executable/*'
-    SERVICE_CATEGORY = "Extraction"
+    SERVICE_CATEGORY = "Static Analysis"
     SERVICE_DESCRIPTION = "This service unpacks UPX packed executables for further analysis."
     SERVICE_ENABLED = True
     SERVICE_REVISION = ServiceBase.parse_revision('$Id$')
-    SERVICE_STAGE = 'EXTRACT'
+    SERVICE_STAGE = 'Secondary'
     SERVICE_VERSION = '1'
     SERVICE_CPU_CORES = 0.5
     SERVICE_RAM_MB = 256
@@ -42,7 +42,6 @@ class Unpacker(ServiceBase):
             request.result.add_section(ResultSection(SCORE.NULL, "%s successfully unpacked!" %
                                                      (os.path.basename(uresult.displayname)),
                                        self.SERVICE_CLASSIFICATION))
-            request.drop()
 
     def _unpack_upx(self, packedfile, outputpath, displayname):
         # Test the file to see if UPX agrees with our identification.
