@@ -19,7 +19,7 @@ class Unpacker(ServiceBase):
     SERVICE_DESCRIPTION = "This service unpacks UPX packed executables for further analysis."
     SERVICE_ENABLED = True
     SERVICE_REVISION = ServiceBase.parse_revision('$Id$')
-    SERVICE_STAGE = 'Secondary'
+    SERVICE_STAGE = 'SECONDARY'
     SERVICE_VERSION = '1'
     SERVICE_CPU_CORES = 0.5
     SERVICE_RAM_MB = 256
