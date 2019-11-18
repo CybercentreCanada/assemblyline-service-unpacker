@@ -1,0 +1,26 @@
+name: Unpacker
+version: 1
+description: >-
+  This service unpacks UPX packed executables for further analysis.
+
+accepts: executable/*
+rejects: empty|metadata/.*
+
+stage: SECONDARY
+category: Static Analysis
+
+file_required: true
+timeout: 60
+disable_cache: false
+
+enabled: true
+is_external: false
+licence_count: 0
+
+config:
+  upx_exe: /usr/bin/upx
+
+docker_config:
+  image: cccs/assemblyline-service-unpacker:latest
+  cpu_cores: 0.5
+  ram_mb: 256
