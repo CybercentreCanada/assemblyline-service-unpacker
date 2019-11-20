@@ -1,6 +1,6 @@
 import os
-from subprocess import PIPE, Popen
 from collections import namedtuple
+from subprocess import PIPE, Popen
 
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.result import Result, ResultSection
@@ -15,7 +15,7 @@ class Unpacker(ServiceBase):
 
     def __init__(self, config=None):
         super(Unpacker, self).__init__(config)
-        self.upx_exe = self.config.get('upx_exe')
+        self.upx_exe = "/usr/bin/upx"
         if not os.path.exists(self.upx_exe):
             raise Exception(f'UPX executable not found on system: {self.upx_exe}')
 
@@ -23,7 +23,7 @@ class Unpacker(ServiceBase):
         request.result = Result()
         uresult = self._unpack(request, ['upx'])
         if uresult.ok and uresult.localpath:
-            request.add_extracted(uresult.localpath, f'Unpacked from {request.sha256}', uresult.displayname)
+            request.add_extracted(uresult.localpath, uresult.displayname, f'Unpacked from {request.sha256}')
             request.result.add_section(ResultSection(f"{os.path.basename(uresult.displayname)} successfully unpacked!"))
 
     def _unpack_upx(self, packedfile, outputpath, displayname):
