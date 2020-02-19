@@ -18,6 +18,6 @@ is_external: false
 licence_count: 0
 
 docker_config:
-  image: cccs/assemblyline-service-unpacker:latest
+  image: ${REGISTRY}cccs/assemblyline-service-unpacker:latest
   cpu_cores: 0.5
   ram_mb: 384
