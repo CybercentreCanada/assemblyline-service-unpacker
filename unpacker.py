@@ -29,13 +29,13 @@ class Unpacker(ServiceBase):
     def _unpack_upx(self, packedfile, outputpath, displayname):
         # Test the file to see if UPX agrees with our identification.
         stdout, stderr = Popen((self.upx_exe, '-t', packedfile),
-            stdout=PIPE, stderr=PIPE).communicate()
+                               stdout=PIPE, stderr=PIPE).communicate()
 
         if b'[OK]' in stdout and b'Tested 1 file' in stdout:
-             stdout, stderr = Popen((self.upx_exe, '-d', '-o', outputpath, packedfile),
-                stdout=PIPE, stderr=PIPE).communicate()
+            stdout, stderr = Popen((self.upx_exe, '-d', '-o', outputpath, packedfile),
+                                   stdout=PIPE, stderr=PIPE).communicate()
 
-             if b'Unpacked 1 file' in stdout:
+            if b'Unpacked 1 file' in stdout:
                 # successfully unpacked.
                 return UnpackResult(True, outputpath, displayname, {'stdout': stdout[:1024]})
         else:
