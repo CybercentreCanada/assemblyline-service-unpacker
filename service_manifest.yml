@@ -1,5 +1,5 @@
 name: Unpacker
-version: 1
+version: $SERVICE_TAG
 description: >-
   This service unpacks UPX packed executables for further analysis.
 
@@ -18,6 +18,6 @@ is_external: false
 licence_count: 0
 
 docker_config:
-  image: ${REGISTRY}cccs/assemblyline-service-unpacker:latest
+  image: ${REGISTRY}cccs/assemblyline-service-unpacker:$SERVICE_TAG
   cpu_cores: 0.5
   ram_mb: 384
