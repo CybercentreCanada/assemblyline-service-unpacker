@@ -23,8 +23,12 @@ class Unpacker(ServiceBase):
         request.result = Result()
         uresult = self._unpack(request, ['upx'])
         if uresult.ok and uresult.localpath:
-            request.add_extracted(uresult.localpath, uresult.displayname, f'Unpacked from {request.sha256}')
-            request.result.add_section(ResultSection(f"{os.path.basename(uresult.displayname)} successfully unpacked!"))
+            caveat_msg = None
+            if request.add_extracted(uresult.localpath, uresult.displayname, f'Unpacked from {request.sha256}',
+                                     safelist_interface=self.api_interface):
+                caveat_msg = "Although the file extracted hasn't been re-submitted due to being known to be safe."
+            request.result.add_section(ResultSection(f"{os.path.basename(uresult.displayname)} successfully unpacked!",
+                                                     body=caveat_msg))
 
     def _unpack_upx(self, packedfile, outputpath, displayname):
         # Test the file to see if UPX agrees with our identification.
