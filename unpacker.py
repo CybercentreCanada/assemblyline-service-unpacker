@@ -36,7 +36,7 @@ class Unpacker(ServiceBase):
                                stdout=PIPE, stderr=PIPE).communicate()
         return (stdout, stderr)
 
-    def _fix_p_info(self, packedfile)
+    def _fix_p_info(self, packedfile):
         stream = open(packedfile, 'r+b')
         buff = stream.read()
         upx_index = buff.find(b'UPX!')
