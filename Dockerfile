@@ -1,23 +1,34 @@
 ARG branch=latest
 FROM cccs/assemblyline-v4-service-base:$branch
 
-ENV SERVICE_PATH unpacker.Unpacker
+# Python path to the service class from your service directory
+ENV SERVICE_PATH unpacker.unpacker.Unpacker
 
+# Install apt dependencies
 USER root
-RUN apt-get update && apt-get install -y wget
-RUN wget http://ftp.de.debian.org/debian/pool/main/u/upx-ucl/upx-ucl_3.96-2_amd64.deb && \
-    apt install -y ./upx-ucl_3.96-2_amd64.deb && \
-    rm -f upx-ucl_3.96-2_amd64.deb
+RUN echo "deb http://deb.debian.org/debian bookworm-backports main" >> /etc/apt/sources.list
+COPY pkglist.txt /tmp/setup/
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    $(grep -vE "^\s*(#|$)" /tmp/setup/pkglist.txt | tr "\n" " ") && \
+    rm -rf /tmp/setup/pkglist.txt /var/lib/apt/lists/*
 
-# Switch to assemblyline user
+# Install python dependencies
 USER assemblyline
+COPY requirements.txt requirements.txt
+RUN pip install \
+    --no-cache-dir \
+    --user \
+    --requirement requirements.txt && \
+    rm -rf ~/.cache/pip
 
-# Copy Unpacker service code
+# Copy service code
 WORKDIR /opt/al_service
 COPY . .
 
 # Patch version in manifest
-ARG version=4.0.0.dev1
+ARG version=1.0.0.dev1
 USER root
 RUN sed -i -e "s/\$SERVICE_TAG/$version/g" service_manifest.yml
 
