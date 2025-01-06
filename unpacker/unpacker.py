@@ -24,7 +24,7 @@ class Unpacker(ServiceBase):
         uresult = self._unpack(request, ["upx"])
         if uresult.ok and uresult.localpath:
             caveat_msg = None
-            if request.add_extracted(
+            if not request.add_extracted(
                 uresult.localpath,
                 uresult.displayname,
                 f"Unpacked from {request.sha256}",

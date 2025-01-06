@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Although the file extracted hasn't been re-submitted due to being known to be safe.",
+        "body": null,
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
