@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-  "commit": "6d2fcb683f00eeda843cf2c40981e266679a97dc",
+  "commit": "99becf8ed2990a4063a5bb1f8ce878824a5a1a7b",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -8,15 +8,15 @@
       "__svc_name": "unpacker",
       "__repository": "assemblyline-service-unpacker",
       "__pkg_name": "unpacker",
+      "class_name": "Unpacker",
       "short_description": "This Assemblyline service unpacks UPX packed executables for further analysis.",
-      "short_description_fr": "Ce service d'Assemblyline d\u00e9compresse les ex\u00e9cutables UPX pour une analyse plus approfondie.",
+      "short_description_fr": "Ce service d'Assemblyline décompresse les exécutables UPX pour une analyse plus approfondie.",
       "stage": "SECONDARY",
       "category": "Static Analysis",
       "org_name_full": "CybercentreCanada",
       "org_name_short": "cccs",
       "license": "mit",
-      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-      "class_name": "Unpacker"
+      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git"
     }
   },
   "directory": null
