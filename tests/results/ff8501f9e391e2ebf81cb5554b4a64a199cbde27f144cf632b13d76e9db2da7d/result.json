@@ -1,0 +1,35 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ff8501f9e391e2ebf81cb5554b4a64a199cbde27f144cf632b13d76e9db2da7d.unUPX successfully unpacked!",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ff8501f9e391e2ebf81cb5554b4a64a199cbde27f144cf632b13d76e9db2da7d.unUPX",
+        "sha256": "18abfba847351ad2d301edacf8042d6b502009a3e5717396f2e04f4efb2a0cb1"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}
